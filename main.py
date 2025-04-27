@@ -83,14 +83,14 @@ for i in range(len(lst)):
         for q in range(len(after_lst)):
             if f'victim {count}' not in after_2009_to_present:
                 after_2009_to_present.update({f'victim {count}': [after_lst[q]]})
-            elif q == 3 or (q - 3) % 4 == 0:
+            elif q == 3 or (q - 3) % 5 == 0:
                 shark = find_shark(shark_species, q, after_lst)
                 print(shark)
                 if shark:
                     after_2009_to_present[f'victim {count}'].append(shark)
                 else:
                     after_2009_to_present[f'victim {count}'].append('Unknown')    
-            elif q == 4 or (q - 4) % 4 == 0:
+            elif q == 4 or (q - 4) % 5 == 0:
                 pass
             #     place = find_loc(coastal_states, q)
             #     if place:
