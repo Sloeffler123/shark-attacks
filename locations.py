@@ -25,10 +25,6 @@ coastal_states = {
     'Washington': 'Washington'
 }
 
-australia_states_territories = [
-    "New South Wales", "Queensland", "South Australia", "Tasmania", "Victoria", "Western Australia", 
-    "Australian Capital Territory", "Northern Territory"
-]
 
 south_africa_provinces = [
     "Eastern Cape", "Free State", "Gauteng", "KwaZulu-Natal", "Limpopo", "Mpumalanga", "North West", 

@@ -5,10 +5,11 @@ import json
 import re
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from locations import coastal_states, australia_states_territories, south_africa_provinces
+from locations import coastal_states
 from shark_species import shark_species
 
 # US attacks
+# Data format: Name and age/Date/Species/Location
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option('detach', True)
 
@@ -17,13 +18,14 @@ driver = webdriver.Chrome(options=chrome_options)
 driver.get('https://en.wikipedia.org/wiki/List_of_fatal_shark_attacks_in_the_United_States')
 driver.maximize_window()
 time.sleep(1)
-name_age = driver.find_elements(By.TAG_NAME, 'td')
+data = driver.find_elements(By.TAG_NAME, 'td')
 
 lst = []
 after_lst = []
 
 found = 0
-for i in name_age:
+# used to get all info from the article
+for i in data:
     if i.text == 'Stephen Howard Schafer, 38':
         found = 1   
         after_lst.append(i.text.strip())
@@ -39,6 +41,7 @@ for i in name_age:
 count = 1
 up_to_2009 = {}
 after_2009_to_present = {}
+# used to get the location from the text
 def find_loc(locations, range_loc, list):
     loc = list[range_loc]
     for k,v in locations.items():
@@ -47,6 +50,7 @@ def find_loc(locations, range_loc, list):
         elif k in loc:
             return v
     return None    
+# used to get the shark name from the text
 def find_shark(sharks, range_loc, list):
     loc = list[range_loc]
     for k,v in sharks.items():
@@ -57,7 +61,7 @@ def find_shark(sharks, range_loc, list):
     return None   
 
 j = 0
-
+# Data before 2009
 for i in range(len(lst)):
     if f'victim {count}' not in up_to_2009:
         up_to_2009.update({f'victim {count}': [lst[i]]})
@@ -79,7 +83,7 @@ for i in range(len(lst)):
     if j == 4:
         count += 1
         j = 0
-  
+    # attacks after 2009 because data is different then the ones after
     if i+1 == len(lst):
         d = 0
         for q in range(len(after_lst)):
@@ -100,4 +104,13 @@ for i in range(len(lst)):
                 count += 1
                 d = 0                   
 up_to_2009.update(after_2009_to_present)
-print(up_to_2009)
+
+# convert dict to json
+json_string = json.dumps(up_to_2009)
+
+# convert json to csv
+df = pd.read_json(json_string)
+
+# make csv file
+df.to_csv('us-shark-attack-data', index=False)
+
