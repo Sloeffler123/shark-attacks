@@ -32,7 +32,9 @@ for i in name_age:
         lst.append(cleaned_text.strip())
     else:
         cleaned_text = re.sub(r'\[\d+\]', '', i.text)
-        if i.text != '':
+        if '\n' in cleaned_text:
+            break
+        elif i.text != '':
             after_lst.append(cleaned_text.strip())
 count = 1
 up_to_2009 = {}
@@ -85,23 +87,17 @@ for i in range(len(lst)):
                 after_2009_to_present.update({f'victim {count}': [after_lst[q]]})
             elif q == 3 or (q - 3) % 5 == 0:
                 shark = find_shark(shark_species, q, after_lst)
-                print(shark)
                 if shark:
                     after_2009_to_present[f'victim {count}'].append(shark)
                 else:
                     after_2009_to_present[f'victim {count}'].append('Unknown')    
             elif q == 4 or (q - 4) % 5 == 0:
-                pass
-            #     place = find_loc(coastal_states, q)
-            #     if place:
-            #         after_2009_to_present[f'victim {count}'].append(place)
-            #     else:
-            #         after_2009_to_present[f'victim {count}'].append('location unknown')   
+                pass  
             else:
                 after_2009_to_present[f'victim {count}'].append(after_lst[q])   
             d += 1
             if d == 5:
                 count += 1
                 d = 0                   
+up_to_2009.update(after_2009_to_present)
 print(up_to_2009)
-print(after_2009_to_present)
