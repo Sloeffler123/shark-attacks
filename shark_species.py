@@ -1,4 +1,5 @@
 shark_species = {
+    'White shark': 'Great white shark',
     'Great white shark': 'Great white shark',
     'Hammerhead shark': 'Hammerhead shark',
     'Tiger shark': 'Tiger shark',
