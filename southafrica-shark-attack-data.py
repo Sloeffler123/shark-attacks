@@ -7,7 +7,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from shark_species import shark_species
 
-
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option('detach', True)
 
@@ -49,4 +48,11 @@ for i in data_lst:
         if count == 112:
             break
     
-print(all_data)
+# convert dict to json
+json_string = json.dumps(all_data)
+
+# convert json to csv
+df = pd.read_json(json_string)
+
+# make csv file
+df.to_csv('southafrica-shark-attack-data', index=False)
