@@ -113,4 +113,3 @@ df = pd.read_json(json_string)
 
 # make csv file
 df.to_csv('us-shark-attack-data', index=False)
-

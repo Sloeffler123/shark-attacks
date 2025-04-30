@@ -51,8 +51,7 @@ for i in data:
     if evr == 11:
         count += 1
         evr = 0
-
-    
+   
 south_aus = {} 
 south_aus_target_positions = [1, 3, 4, 6, 7, 8, 9, 11]
 s = 0
