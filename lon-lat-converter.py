@@ -5,7 +5,6 @@ from geopy.exc import GeocoderTimedOut
 
 geolocator = Nominatim(user_agent='geoapi', timeout=10)
 
-
 def get_lat_lon(location, lat, lon):
 
     for i in location['Location']:
@@ -60,4 +59,3 @@ south_africa_locations_t['Latitude'] = south_africa_latitude
 south_africa_locations_t['Longitude'] = south_africa_longitude
 
 south_africa_locations_t.to_csv('south-backup')
-

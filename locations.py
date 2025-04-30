@@ -24,12 +24,3 @@ coastal_states = {
     'Virginia': 'Virginia',
     'Washington': 'Washington'
 }
-
-
-south_africa_provinces = [
-    "Eastern Cape", "Free State", "Gauteng", "KwaZulu-Natal", "Limpopo", "Mpumalanga", "North West", 
-    "Northern Cape", "Western Cape"
-]
-
-# Combine all lists
-

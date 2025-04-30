@@ -115,7 +115,4 @@ df = pd.read_json(json_string)
 # make csv file
 df.to_csv('australia-shark-attack-data', index=False)
 
-
-
-
 # see if i can split the locations and check each location to see if they are in the correct lat and lon in aus then append
