@@ -92,9 +92,9 @@ for i in range(len(lst)):
             elif q == 3 or (q - 3) % 5 == 0:
                 shark = find_shark(shark_species, q, after_lst)
                 if shark:
-                    after_2009_to_present[f'victim {count}'].append(shark)
+                    after_2009_to_present[f'victim {count}'].insert(2, shark)
                 else:
-                    after_2009_to_present[f'victim {count}'].append('Unknown')    
+                    after_2009_to_present[f'victim {count}'].insert(2, 'Unknown')    
             elif q == 4 or (q - 4) % 5 == 0:
                 pass  
             else:
