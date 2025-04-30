@@ -5,6 +5,7 @@ from geopy.exc import GeocoderTimedOut
 
 geolocator = Nominatim(user_agent='geoapi', timeout=10)
 
+
 def get_lat_lon(location, lat, lon):
 
     for i in location['Location']:
@@ -15,10 +16,16 @@ def get_lat_lon(location, lat, lon):
                 lon.append('None')
                 lat.append('None')
             elif geo:
-                print('passed')
-                print(i)
-                lon.append(geo.longitude)
-                lat.append(geo.latitude)   
+                if geo.latitude < -9 and geo.latitude > -51:
+                    print('passed')
+                    print(i)
+                    lon.append(geo.longitude)
+                    lat.append(geo.latitude)   
+                else:
+                    print('didnt pass')
+                    print(i)
+                    lat.append('None')
+                    lon.append('None')       
             else:
                 print('didnt pass')
                 print(i)
